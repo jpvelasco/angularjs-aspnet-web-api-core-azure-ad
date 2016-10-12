@@ -1,27 +1,39 @@
 angular
     .module('contactApp')
-    .config(function ($stateProvider, $httpProvider, adalAuthenticationServiceProvider) {
-        $stateProvider.state('contacts', {
-            url: '/contacts',
-            templateUrl: 'app/contact/contact-list.html',
-            controller: 'ContactListController',
-            requiredADLogin: true,
-        }).state('viewContact', {
-            url: '/contacts/:id/view',
-            templateUrl: 'app/contact/contact-view.html',
-            controller: 'ContactViewController',
-            requiredADLogin: true,
-        }).state('newContact', {
-            url: '/contacts/new',
-            templateUrl: 'app/contact/contact-create.html',
-            controller: 'ContactCreateController',
-            requiredADLogin: true,
-        }).state('editContact', {
-            url: '/contacts/:id/edit',
-            templateUrl: 'app/contact/contact-edit.html',
-            controller: 'ContactEditController',
-            requiredADLogin: true,
-        });
+    .config(function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, adalAuthenticationServiceProvider) {
+
+        $locationProvider.html5Mode(true).hashPrefix('!');
+
+        $urlRouterProvider.otherwise("/");
+
+        $stateProvider
+              .state('home', {
+                  url: '/',
+                  templateUrl: 'app/contact/home.html',
+                  controller: 'HomeController'
+              })
+            .state('contacts', {
+                url: '/contacts',
+                templateUrl: 'app/contact/contact-list.html',
+                controller: 'ContactListController',
+                requiredADLogin: true,
+            })
+            .state('viewContact', {
+                url: '/contacts/:id/view',
+                templateUrl: 'app/contact/contact-view.html',
+                controller: 'ContactViewController',
+                requiredADLogin: true,
+            }).state('newContact', {
+                url: '/contacts/new',
+                templateUrl: 'app/contact/contact-create.html',
+                controller: 'ContactCreateController',
+                requiredADLogin: true,
+            }).state('editContact', {
+                url: '/contacts/:id/edit',
+                templateUrl: 'app/contact/contact-edit.html',
+                controller: 'ContactEditController',
+                requiredADLogin: true,
+            });
 
         adalAuthenticationServiceProvider.init(
             {
@@ -34,5 +46,5 @@ angular
             );
 
     }).run(function ($state) {
-        $state.go('contacts');
+        $state.go('home');
     });
