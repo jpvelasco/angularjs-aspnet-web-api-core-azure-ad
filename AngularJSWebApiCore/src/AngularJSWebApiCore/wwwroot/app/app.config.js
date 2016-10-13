@@ -16,23 +16,23 @@ angular
                 url: '/contacts',
                 templateUrl: 'app/contact/contact-list.html',
                 controller: 'ContactListController',
-                requiredADLogin: true,
+                requireADLogin: true,
             })
             .state('viewContact', {
                 url: '/contacts/:id/view',
                 templateUrl: 'app/contact/contact-view.html',
                 controller: 'ContactViewController',
-                requiredADLogin: true,
+                requireADLogin: true,
             }).state('newContact', {
                 url: '/contacts/new',
                 templateUrl: 'app/contact/contact-create.html',
                 controller: 'ContactCreateController',
-                requiredADLogin: true,
+                requireADLogin: true,
             }).state('editContact', {
                 url: '/contacts/:id/edit',
                 templateUrl: 'app/contact/contact-edit.html',
                 controller: 'ContactEditController',
-                requiredADLogin: true,
+                requireADLogin: true,
             });
 
         adalAuthenticationServiceProvider.init(
